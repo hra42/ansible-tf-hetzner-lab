@@ -1,0 +1,11 @@
+# Ignore Terraform directories
+.terraform/
+
+# Ignore Terraform files
+*.tfvars
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Optionally, ignore auto.tfvars files if you want to keep them out of version control
+*.auto.tfvars

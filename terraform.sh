@@ -23,13 +23,13 @@ if [ "$1" == "init" ]; then
 elif [ "$1" == "plan" ]; then
     docker run --rm -v ${PWD}:/terraform -w /terraform -e TF_VAR_hcloud_token hashicorp/terraform:latest plan -out=tfplan
 elif [ "$1" == "apply" ]; then
-    docker run --rm -v ${PWD}:/terraform -w /terraform hashicorp/terraform:latest apply tfplan -auto-approve
+    docker run --rm -v ${PWD}:/terraform -w /terraform hashicorp/terraform:latest apply tfplan
 elif [ "$1" == "destroy" ]; then
     docker run --rm -v ${PWD}:/terraform -w /terraform -e TF_VAR_hcloud_token hashicorp/terraform:latest destroy
 else
     docker run --rm -v ${PWD}:/terraform -w /terraform hashicorp/terraform:latest init && \
     docker run --rm -v ${PWD}:/terraform -w /terraform -e TF_VAR_hcloud_token hashicorp/terraform:latest plan -out=tfplan && \
-    docker run --rm -v ${PWD}:/terraform -w /terraform hashicorp/terraform:latest apply tfplan -auto-approve
+    docker run --rm -v ${PWD}:/terraform -w /terraform hashicorp/terraform:latest apply tfplan
 fi
 
 # Clean up the tfplan file

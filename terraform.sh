@@ -25,7 +25,7 @@ elif [ "$1" == "plan" ]; then
 elif [ "$1" == "apply" ]; then
     docker run --rm -v ${PWD}:/terraform -w /terraform hashicorp/terraform:latest apply tfplan
 elif [ "$1" == "destroy" ]; then
-    docker run --rm -v ${PWD}:/terraform -w /terraform -e TF_VAR_hcloud_token hashicorp/terraform:latest destroy
+    docker run --rm -v ${PWD}:/terraform -w /terraform -e TF_VAR_hcloud_token hashicorp/terraform:latest destroy --auto-approve
 else
     docker run --rm -v ${PWD}:/terraform -w /terraform hashicorp/terraform:latest init && \
     docker run --rm -v ${PWD}:/terraform -w /terraform -e TF_VAR_hcloud_token hashicorp/terraform:latest plan -out=tfplan && \
